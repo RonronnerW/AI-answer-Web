@@ -45,10 +45,9 @@
     </a-upload>
   </a-space>
 </template>
-
 <script setup lang="ts">
 import { IconEdit, IconPlus } from "@arco-design/web-vue/es/icon";
-import { ref, withDefaults, defineProps } from "vue";
+import { ref, withDefaults, defineProps, watchEffect } from "vue";
 import { Message } from "@arco-design/web-vue";
 import { uploadFileUsingPost } from "../api/fileController";
 
@@ -69,13 +68,6 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const file = ref();
-if (props.value) {
-  file.value = {
-    url: props.value,
-    percent: 100,
-    status: "done",
-  };
-}
 
 // 自定义请求
 const customRequest = async (option: any) => {
@@ -86,7 +78,7 @@ const customRequest = async (option: any) => {
     {},
     fileItem.file
   );
-  if (res.data.code === 0 && res.data.data) {
+  if (res.data.code === 200 && res.data.data) {
     const url = res.data.data;
     file.value = {
       name: fileItem.name,
@@ -101,4 +93,20 @@ const customRequest = async (option: any) => {
     onError(new Error(res.data.message));
   }
 };
+/**
+ * 加载数据
+ */
+const loadData = async () => {
+  if (props.value) {
+    file.value = {
+      url: props.value,
+      percent: 100,
+      status: "done",
+    };
+  }
+};
+// 获取旧数据
+watchEffect(() => {
+  loadData();
+});
 </script>

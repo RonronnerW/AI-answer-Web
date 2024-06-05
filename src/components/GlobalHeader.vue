@@ -23,7 +23,23 @@
     </a-col>
     <a-col flex="100px">
       <div v-if="loginUserStore.loginUser.id">
-        {{ loginUserStore.loginUser.userName ?? "无名" }}
+        <a-dropdown>
+          <a-button>{{ loginUserStore.loginUser.userName }}</a-button>
+          <template #content>
+            <a-doption @click="logout">
+              <template #icon>
+                <icon-location />
+              </template>
+              <template #default>退出</template>
+            </a-doption>
+            <a-doption>
+              <template #icon>
+                <icon-location />
+              </template>
+              <template #default>设置</template>
+            </a-doption>
+          </template>
+        </a-dropdown>
       </div>
       <div v-else>
         <a-button type="primary" href="/user/login">登录</a-button>
@@ -38,6 +54,7 @@ import { useRouter } from "vue-router";
 import { computed, ref } from "vue";
 import { useLoginUserStore } from "@/store/userStore";
 import checkAccess from "@/access/accessCheck";
+import { userLogoutUsingPost } from "@/api/userController";
 
 const loginUserStore = useLoginUserStore();
 
@@ -62,6 +79,14 @@ const visibleRoutes = computed(() => {
     return true;
   });
 });
+
+const logout = async () => {
+  await userLogoutUsingPost();
+  useLoginUserStore();
+  router.push({
+    path: "/user/login",
+  });
+};
 
 // 点击菜单跳转到对应页面
 const doMenuClick = (key: string) => {
