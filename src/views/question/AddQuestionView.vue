@@ -9,19 +9,29 @@
       @submit="handleSubmit"
     >
       <a-space>
-        <a-form-item label="应用 id">
+        <a-form-item label="应用 ">
           {{ app.appName }}
         </a-form-item>
       </a-space>
       <a-form-item label="题目列表" :content-flex="false" :merge-props="false">
         <a-space size="medium">
           <a-button
-            v-if="questionContent.length < 1"
             type="outline"
+            style="
+               {
+                width: 100px;
+                margin-bottom: 20px;
+              }
+            "
             @click="addQuestion(questionContent.length)"
           >
             添加题目
           </a-button>
+          <!-- AI 生成抽屉 -->
+          <AiGenerateQuestionDrawer
+            :appId="appId"
+            :onSuccess="onAiGenerateSuccess"
+          />
         </a-space>
         <!-- 遍历每道题目 -->
         <div v-for="(question, index) in questionContent" :key="index">
@@ -146,12 +156,14 @@ import API from "@/api";
 import { useRouter } from "vue-router";
 import {
   addQuestionUsingPost,
+  aiGenerateQuestionUsingPost,
   editQuestionUsingPost,
   listQuestionVoByPageUsingPost,
 } from "@/api/questionController";
 import message from "@arco-design/web-vue/es/message";
 import { getAppVoByIdUsingGet } from "@/api/appController";
 import { APP_TYPE_ENUM } from "@/constant/app";
+import AiGenerateQuestionDrawer from "@/views/question/AiGenerateQuestionDrawer.vue";
 
 interface Props {
   appId: string;
@@ -164,7 +176,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const router = useRouter();
-
+const app = ref<API.AppVO>({});
 // 题目内容结构（理解为题目列表）
 const questionContent = ref<API.QuestionContentDTO[]>([]);
 
@@ -216,7 +228,6 @@ const deleteQuestionOption = (
   }
   question.options.splice(index, 1);
 };
-const app = ref<API.AppVO>({});
 const oldQuestion = ref<API.QuestionVO>();
 /**
  * 加载数据

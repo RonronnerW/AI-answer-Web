@@ -1,4 +1,10 @@
 declare namespace API {
+  type AiGenerateQuestionRequest = {
+    appId?: number;
+    optionNumber?: number;
+    questionNumber?: number;
+  };
+
   type App = {
     appDesc?: string;
     appIcon?: string;
@@ -91,6 +97,12 @@ declare namespace API {
   type BaseResponseBoolean_ = {
     code?: number;
     data?: boolean;
+    message?: string;
+  };
+
+  type BaseResponseListQuestionContentDTO_ = {
+    code?: number;
+    data?: QuestionContentDTO[];
     message?: string;
   };
 
@@ -418,7 +430,7 @@ declare namespace API {
     current?: number;
     id?: number;
     pageSize?: number;
-    questionContent?: QuestionContentDTO[];
+    questionContent?: string;
     sortField?: string;
     sortOrder?: string;
     userId?: number;
@@ -484,7 +496,7 @@ declare namespace API {
     pageSize?: number;
     resultDesc?: string;
     resultName?: string;
-    resultProp?: string[];
+    resultProp?: string;
     resultScoreRange?: number;
     sortField?: string;
     sortOrder?: string;
