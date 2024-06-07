@@ -29,7 +29,8 @@
             <a-button type="primary" :href="`/answer/do/${id}`"
               >开始答题
             </a-button>
-            <a-button type="outline">分享应用</a-button>
+            <a-button type="outline" @click="doShare">分享应用</a-button>
+            <ShareModel ref="shareModalRef" :link="shareLink" />
             <a-button type="outline" v-if="isMy" :href="`/add/question/${id}`"
               >设置题目
             </a-button>
@@ -40,8 +41,8 @@
               >设置评分
             </a-button>
             <a-button type="outline" v-if="isMy" :href="`/add/app/${id}`"
-              >修改应用</a-button
-            >
+              >修改应用
+            </a-button>
           </a-space>
         </a-col>
         <a-col flex="320px">
@@ -61,6 +62,7 @@ import { useRouter } from "vue-router";
 import { dayjs } from "@arco-design/web-vue/es/_utils/date";
 import { useLoginUserStore } from "@/store/userStore";
 import { APP_SCORING_STRATEGY_MAP, APP_TYPE_MAP } from "../../constant/app";
+import ShareModel from "@/components/ShareModel.vue";
 
 interface Props {
   id: string;
@@ -71,6 +73,15 @@ const props = withDefaults(defineProps<Props>(), {
     return "";
   },
 });
+// 分享弹窗引用
+const shareModalRef = ref();
+const shareLink = `${window.location.protocol}//${window.location.host}/app/detail/${props.id}`;
+const doShare = (e: Event) => {
+  if (shareModalRef.value) {
+    shareModalRef.value.openModal();
+  }
+  e.stopPropagation();
+};
 
 const router = useRouter();
 

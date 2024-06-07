@@ -59,7 +59,10 @@ import { useRouter } from "vue-router";
 import { listQuestionVoByPageUsingPost } from "@/api/questionController";
 import message from "@arco-design/web-vue/es/message";
 import { getAppVoByIdUsingGet } from "@/api/appController";
-import { addUserAnswerUsingPost } from "@/api/userAnswerController";
+import {
+  addUserAnswerUsingPost,
+  generateUserAnswerIdUsingGet,
+} from "@/api/userAnswerController";
 
 interface Props {
   appId: string;
@@ -149,6 +152,8 @@ const doRadioChange = (value: string) => {
   answerList[current.value - 1] = value;
 };
 
+const id = ref<number>();
+
 /**
  * 提交
  */
@@ -157,7 +162,15 @@ const doSubmit = async () => {
     return;
   }
   submitting.value = true;
-  const res = await addUserAnswerUsingPost({
+  // 获取全局唯一id
+  let res: any = await generateUserAnswerIdUsingGet();
+  if (res.data.code === 200) {
+    id.value = res.data.data as any;
+  } else {
+    message.error("获取唯一id失败，" + res.data.message);
+  }
+  res = await addUserAnswerUsingPost({
+    id: id.value,
     appId: props.appId as any,
     choices: answerList,
   });

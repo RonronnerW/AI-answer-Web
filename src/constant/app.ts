@@ -42,3 +42,5 @@ export const APP_SCORING_STRATEGY_MAP = {
   0: "自定义",
   1: "AI",
 };
+
+export const HOST = "http://localhost:8101";

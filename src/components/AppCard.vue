@@ -1,8 +1,9 @@
 <template>
   <a-card class="appCard" hoverable @click="doCardClick">
     <template #actions>
-      <!--      <span class="icon-hover"> <IconThumbUp /> </span>-->
-      <span class="icon-hover"> <IconShareInternal /> </span>
+      <span class="icon-hover"> <IconThumbUp /> </span>
+      <span class="icon-hover" @click="doShare"> <IconShareInternal /> </span>
+      <ShareModel ref="shareModalRef" :link="shareLink" />
     </template>
     <template #cover>
       <div
@@ -40,8 +41,9 @@
 <script setup lang="ts">
 import { IconShareInternal } from "@arco-design/web-vue/es/icon";
 import API from "@/api";
-import { defineProps, withDefaults } from "vue";
+import { defineProps, ref, withDefaults } from "vue";
 import { useRouter } from "vue-router";
+import ShareModel from "@/components/ShareModel.vue";
 
 interface Props {
   app: API.AppVO;
@@ -52,7 +54,15 @@ const props = withDefaults(defineProps<Props>(), {
     return {};
   },
 });
-
+// 分享弹窗引用
+const shareModalRef = ref();
+const shareLink = `${window.location.protocol}//${window.location.host}/app/detail/${props.app.id}`;
+const doShare = (e: Event) => {
+  if (shareModalRef.value) {
+    shareModalRef.value.openModal();
+  }
+  e.stopPropagation();
+};
 const router = useRouter();
 const doCardClick = () => {
   router.push(`/app/detail/${props.app.id}`);

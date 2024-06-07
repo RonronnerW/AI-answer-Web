@@ -12,11 +12,11 @@ import AppDetailView from "@/views/app/AppDetailView.vue";
 import AddAppView from "@/views/app/AddAppView.vue";
 import AddQuestionPage from "@/views/question/AddQuestionView.vue";
 import AddScoringResultView from "@/views/scoringResult/AddScoringResultView.vue";
-import accessEnum from "@/access/accessEnum";
 import DoAnswerView from "@/views/answer/DoAnswerView.vue";
 import ACCESS_ENUM from "@/access/accessEnum";
 import AnswerResultView from "@/views/answer/AnswerResultView.vue";
 import MyAnswerView from "@/views/answer/MyAnswerView.vue";
+import AppStatisticView from "@/views/app/AppStatisticView.vue";
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -24,7 +24,7 @@ export const routes: Array<RouteRecordRaw> = [
     name: "主页",
     component: HomeView,
     meta: {
-      access: accessEnum.USER,
+      access: ACCESS_ENUM.USER,
     },
   },
   {
@@ -34,7 +34,7 @@ export const routes: Array<RouteRecordRaw> = [
     props: true,
     meta: {
       hideInMenu: true,
-      access: accessEnum.USER,
+      access: ACCESS_ENUM.USER,
     },
   },
   {
@@ -149,6 +149,14 @@ export const routes: Array<RouteRecordRaw> = [
     path: "/admin/userAnswer",
     name: "回答管理",
     component: AdminUserAnswerView,
+    meta: {
+      access: ACCESS_ENUM.ADMIN,
+    },
+  },
+  {
+    path: "/statistic",
+    name: "统计管理",
+    component: AppStatisticView,
     meta: {
       access: ACCESS_ENUM.ADMIN,
     },

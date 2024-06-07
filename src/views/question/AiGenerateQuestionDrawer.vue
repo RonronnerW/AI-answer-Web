@@ -24,7 +24,7 @@
         :model="form"
         label-align="left"
         auto-label-width
-        @submit="handleSubmit"
+        @submit="handleSubmitSSE"
       >
         <a-form-item label="应用 ">
           {{ app.appName }}
@@ -56,11 +56,15 @@ import API from "@/api";
 import { aiGenerateQuestionUsingPost } from "@/api/questionController";
 import message from "@arco-design/web-vue/es/message";
 import { getAppVoByIdUsingGet } from "@/api/appController";
+import { HOST } from "@/constant/app";
 
 interface Props {
   appId: string;
   // 子组件返回函数
   onSuccess?: (result: API.QuestionContentDTO[]) => void;
+  onSSESuccess?: (result: API.QuestionContentDTO) => void;
+  onSSEStart?: (event: any) => void;
+  onSSEClose?: (event: any) => void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -80,7 +84,7 @@ const handleClick = () => {
   visible.value = true;
 };
 const handleOk = () => {
-  handleSubmit();
+  handleSubmitSSE();
 };
 const handleCancel = () => {
   visible.value = false;
@@ -135,5 +139,33 @@ const handleSubmit = async () => {
     message.error("操作失败，" + res.data.message);
   }
   submitting.value = false;
+};
+/**
+ * 提交 SSE
+ */
+const handleSubmitSSE = async () => {
+  if (!props.appId) {
+    return;
+  }
+  handleCancel();
+  const eventSource = new EventSource(
+    HOST +
+      "/question/ai_generate/sse?" +
+      `appId=${props.appId}&questionNumber=${form.questionNumber}&optionNumber=${form.optionNumber}`
+  );
+  eventSource.onmessage = function (event) {
+    props.onSSESuccess?.(JSON.parse(event.data));
+  };
+  eventSource.onerror = function (event) {
+    if (event.eventPhase == EventSource.CLOSED) {
+      console.log("SSE close");
+      eventSource.close();
+      props.onSSEClose?.(event);
+    }
+  };
+  eventSource.onopen = function (event) {
+    console.log("SSE start");
+    props.onSSEStart?.(event);
+  };
 };
 </script>

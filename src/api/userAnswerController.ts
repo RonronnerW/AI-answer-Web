@@ -1,4 +1,3 @@
-// @ts-ignore
 /* eslint-disable */
 import request from '@/request';
 
@@ -13,6 +12,29 @@ export async function addUserAnswerUsingPost(
       'Content-Type': 'application/json',
     },
     data: body,
+    ...(options || {}),
+  });
+}
+
+/** getAppUserAnswerCount GET /userAnswer/app_answer_count */
+export async function getAppUserAnswerCountUsingGet(options?: { [key: string]: any }) {
+  return request<API.BaseResponseListAppAnswerCountDTO_>('/userAnswer/app_answer_count', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** getAppUserAnswerResult GET /userAnswer/app_answer_result */
+export async function getAppUserAnswerResultUsingGet(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.getAppUserAnswerResultUsingGETParams,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseListAppAnswerResultDTO_>('/userAnswer/app_answer_result', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
     ...(options || {}),
   });
 }
@@ -43,6 +65,14 @@ export async function editUserAnswerUsingPost(
       'Content-Type': 'application/json',
     },
     data: body,
+    ...(options || {}),
+  });
+}
+
+/** generateUserAnswerId GET /userAnswer/generate/id */
+export async function generateUserAnswerIdUsingGet(options?: { [key: string]: any }) {
+  return request<API.BaseResponseLong_>('/userAnswer/generate/id', {
+    method: 'GET',
     ...(options || {}),
   });
 }
