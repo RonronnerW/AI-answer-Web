@@ -1,15 +1,15 @@
 /* eslint-disable */
-import request from '@/request';
+import request from "@/request";
 
 /** addUserAnswer POST /userAnswer/add */
 export async function addUserAnswerUsingPost(
   body: API.UserAnswerAddRequest,
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
-  return request<API.BaseResponseLong_>('/userAnswer/add', {
-    method: 'POST',
+  return request<API.BaseResponseLong_>("/userAnswer/add", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     data: body,
     ...(options || {}),
@@ -17,37 +17,45 @@ export async function addUserAnswerUsingPost(
 }
 
 /** getAppUserAnswerCount GET /userAnswer/app_answer_count */
-export async function getAppUserAnswerCountUsingGet(options?: { [key: string]: any }) {
-  return request<API.BaseResponseListAppAnswerCountDTO_>('/userAnswer/app_answer_count', {
-    method: 'GET',
-    ...(options || {}),
-  });
+export async function getAppUserAnswerCountUsingGet(options?: {
+  [key: string]: any;
+}) {
+  return request<API.BaseResponseListAppAnswerCountDTO_>(
+    "/userAnswer/app_answer_count",
+    {
+      method: "GET",
+      ...(options || {}),
+    }
+  );
 }
 
 /** getAppUserAnswerResult GET /userAnswer/app_answer_result */
 export async function getAppUserAnswerResultUsingGet(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.getAppUserAnswerResultUsingGETParams,
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
-  return request<API.BaseResponseListAppAnswerResultDTO_>('/userAnswer/app_answer_result', {
-    method: 'GET',
-    params: {
-      ...params,
-    },
-    ...(options || {}),
-  });
+  return request<API.BaseResponseListAppAnswerResultDTO_>(
+    "/userAnswer/app_answer_result",
+    {
+      method: "GET",
+      params: {
+        ...params,
+      },
+      ...(options || {}),
+    }
+  );
 }
 
 /** deleteUserAnswer POST /userAnswer/delete */
 export async function deleteUserAnswerUsingPost(
   body: API.DeleteRequest,
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
-  return request<API.BaseResponseBoolean_>('/userAnswer/delete', {
-    method: 'POST',
+  return request<API.BaseResponseBoolean_>("/userAnswer/delete", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     data: body,
     ...(options || {}),
@@ -57,12 +65,12 @@ export async function deleteUserAnswerUsingPost(
 /** editUserAnswer POST /userAnswer/edit */
 export async function editUserAnswerUsingPost(
   body: API.UserAnswerEditRequest,
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
-  return request<API.BaseResponseBoolean_>('/userAnswer/edit', {
-    method: 'POST',
+  return request<API.BaseResponseBoolean_>("/userAnswer/edit", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     data: body,
     ...(options || {}),
@@ -70,9 +78,11 @@ export async function editUserAnswerUsingPost(
 }
 
 /** generateUserAnswerId GET /userAnswer/generate/id */
-export async function generateUserAnswerIdUsingGet(options?: { [key: string]: any }) {
-  return request<API.BaseResponseLong_>('/userAnswer/generate/id', {
-    method: 'GET',
+export async function generateUserAnswerIdUsingGet(options?: {
+  [key: string]: any;
+}) {
+  return request<API.BaseResponseLong_>("/userAnswer/generate/id", {
+    method: "GET",
     ...(options || {}),
   });
 }
@@ -81,10 +91,10 @@ export async function generateUserAnswerIdUsingGet(options?: { [key: string]: an
 export async function getUserAnswerVoByIdUsingGet(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.getUserAnswerVOByIdUsingGETParams,
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
-  return request<API.BaseResponseUserAnswerVO_>('/userAnswer/get/vo', {
-    method: 'GET',
+  return request<API.BaseResponseUserAnswerVO_>("/userAnswer/get/vo", {
+    method: "GET",
     params: {
       ...params,
     },
@@ -95,12 +105,12 @@ export async function getUserAnswerVoByIdUsingGet(
 /** listUserAnswerByPage POST /userAnswer/list/page */
 export async function listUserAnswerByPageUsingPost(
   body: API.UserAnswerQueryRequest,
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
-  return request<API.BaseResponsePageUserAnswer_>('/userAnswer/list/page', {
-    method: 'POST',
+  return request<API.BaseResponsePageUserAnswer_>("/userAnswer/list/page", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     data: body,
     ...(options || {}),
@@ -110,42 +120,48 @@ export async function listUserAnswerByPageUsingPost(
 /** listUserAnswerVOByPage POST /userAnswer/list/page/vo */
 export async function listUserAnswerVoByPageUsingPost(
   body: API.UserAnswerQueryRequest,
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
-  return request<API.BaseResponsePageUserAnswerVO_>('/userAnswer/list/page/vo', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.BaseResponsePageUserAnswerVO_>(
+    "/userAnswer/list/page/vo",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }
 
 /** listMyUserAnswerVOByPage POST /userAnswer/my/list/page/vo */
 export async function listMyUserAnswerVoByPageUsingPost(
   body: API.UserAnswerQueryRequest,
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
-  return request<API.BaseResponsePageUserAnswerVO_>('/userAnswer/my/list/page/vo', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.BaseResponsePageUserAnswerVO_>(
+    "/userAnswer/my/list/page/vo",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }
 
 /** updateUserAnswer POST /userAnswer/update */
 export async function updateUserAnswerUsingPost(
   body: API.UserAnswerUpdateRequest,
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
-  return request<API.BaseResponseBoolean_>('/userAnswer/update', {
-    method: 'POST',
+  return request<API.BaseResponseBoolean_>("/userAnswer/update", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     data: body,
     ...(options || {}),
