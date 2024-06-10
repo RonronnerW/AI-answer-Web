@@ -43,4 +43,5 @@ export const APP_SCORING_STRATEGY_MAP = {
   1: "AI",
 };
 
-export const HOST = "http://localhost:8101";
+export const HOST =
+  "https://ai-answer-96327-4-1324960290.sh.run.tcloudbase.com";
