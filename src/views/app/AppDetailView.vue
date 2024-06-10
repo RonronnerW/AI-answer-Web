@@ -29,10 +29,8 @@
             <a-button type="primary" :href="`/answer/do/${id}`"
               >开始答题
             </a-button>
-            <a-button type="outline" @click="doShare">分享应用</a-button>
-            <ShareModel ref="shareModalRef" :link="shareLink" />
-            <a-button type="outline" v-if="isMy" :href="`/add/question/${id}`"
-              >设置题目
+            <a-button type="outline" v-if="isMy" :href="`/add/question/${id}`">
+              设置题目
             </a-button>
             <a-button
               type="outline"
@@ -43,6 +41,8 @@
             <a-button type="outline" v-if="isMy" :href="`/add/app/${id}`"
               >修改应用
             </a-button>
+            <a-button type="outline" @click="doShare">分享应用</a-button>
+            <ShareModel ref="shareModalRef" :link="shareLink" />
           </a-space>
         </a-col>
         <a-col flex="320px">

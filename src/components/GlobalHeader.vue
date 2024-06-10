@@ -24,7 +24,9 @@
     <a-col flex="100px">
       <div v-if="loginUserStore.loginUser.id">
         <a-dropdown>
-          <a-button>{{ loginUserStore.loginUser.userName }}</a-button>
+          <a-avatar>
+            <img alt="avatar" :src="`${loginUserStore.loginUser.userAvatar}`" />
+          </a-avatar>
           <template #content>
             <a-doption @click="logout">
               <template #icon>

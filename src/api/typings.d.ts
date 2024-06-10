@@ -19,6 +19,8 @@ declare namespace API {
     createTime?: string;
     id?: number;
     isDelete?: number;
+    liked?: boolean;
+    likedNumber?: number;
     reviewMessage?: string;
     reviewStatus?: number;
     reviewTime?: string;
@@ -95,6 +97,8 @@ declare namespace API {
     appType?: number;
     createTime?: string;
     id?: number;
+    liked?: boolean;
+    likedNumber?: number;
     reviewMessage?: string;
     reviewStatus?: number;
     reviewTime?: string;
@@ -282,6 +286,11 @@ declare namespace API {
     id?: number;
   };
 
+  type likeUsingGETParams = {
+    /** id */
+    id?: number;
+  };
+
   type LoginUserVO = {
     createTime?: string;
     id?: number;
@@ -290,6 +299,11 @@ declare namespace API {
     userName?: string;
     userProfile?: string;
     userRole?: string;
+  };
+
+  type mailUsingPOSTParams = {
+    /** targetEmail */
+    targetEmail: string;
   };
 
   type Option = {

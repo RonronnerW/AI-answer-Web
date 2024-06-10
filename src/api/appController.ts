@@ -1,15 +1,12 @@
 /* eslint-disable */
-import request from "@/request";
+import request from '@/request';
 
 /** addApp POST /app/add */
-export async function addAppUsingPost(
-  body: API.AppAddRequest,
-  options?: { [key: string]: any }
-) {
-  return request<API.BaseResponseLong_>("/app/add", {
-    method: "POST",
+export async function addAppUsingPost(body: API.AppAddRequest, options?: { [key: string]: any }) {
+  return request<API.BaseResponseLong_>('/app/add', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     data: body,
     ...(options || {}),
@@ -19,12 +16,12 @@ export async function addAppUsingPost(
 /** deleteApp POST /app/delete */
 export async function deleteAppUsingPost(
   body: API.DeleteRequest,
-  options?: { [key: string]: any }
+  options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseBoolean_>("/app/delete", {
-    method: "POST",
+  return request<API.BaseResponseBoolean_>('/app/delete', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     data: body,
     ...(options || {}),
@@ -32,14 +29,11 @@ export async function deleteAppUsingPost(
 }
 
 /** editApp POST /app/edit */
-export async function editAppUsingPost(
-  body: API.AppEditRequest,
-  options?: { [key: string]: any }
-) {
-  return request<API.BaseResponseBoolean_>("/app/edit", {
-    method: "POST",
+export async function editAppUsingPost(body: API.AppEditRequest, options?: { [key: string]: any }) {
+  return request<API.BaseResponseBoolean_>('/app/edit', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     data: body,
     ...(options || {}),
@@ -50,10 +44,25 @@ export async function editAppUsingPost(
 export async function getAppVoByIdUsingGet(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.getAppVOByIdUsingGETParams,
-  options?: { [key: string]: any }
+  options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseAppVO_>("/app/get/vo", {
-    method: "GET",
+  return request<API.BaseResponseAppVO_>('/app/get/vo', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** like GET /app/like */
+export async function likeUsingGet(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.likeUsingGETParams,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseBoolean_>('/app/like', {
+    method: 'GET',
     params: {
       ...params,
     },
@@ -64,12 +73,12 @@ export async function getAppVoByIdUsingGet(
 /** listAppByPage POST /app/list/page */
 export async function listAppByPageUsingPost(
   body: API.AppQueryRequest,
-  options?: { [key: string]: any }
+  options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponsePageApp_>("/app/list/page", {
-    method: "POST",
+  return request<API.BaseResponsePageApp_>('/app/list/page', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     data: body,
     ...(options || {}),
@@ -79,12 +88,12 @@ export async function listAppByPageUsingPost(
 /** listAppVOByPage POST /app/list/page/vo */
 export async function listAppVoByPageUsingPost(
   body: API.AppQueryRequest,
-  options?: { [key: string]: any }
+  options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponsePageAppVO_>("/app/list/page/vo", {
-    method: "POST",
+  return request<API.BaseResponsePageAppVO_>('/app/list/page/vo', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     data: body,
     ...(options || {}),
@@ -94,12 +103,12 @@ export async function listAppVoByPageUsingPost(
 /** listMyAppVOByPage POST /app/my/list/page/vo */
 export async function listMyAppVoByPageUsingPost(
   body: API.AppQueryRequest,
-  options?: { [key: string]: any }
+  options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponsePageAppVO_>("/app/my/list/page/vo", {
-    method: "POST",
+  return request<API.BaseResponsePageAppVO_>('/app/my/list/page/vo', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     data: body,
     ...(options || {}),
@@ -109,12 +118,12 @@ export async function listMyAppVoByPageUsingPost(
 /** doAppReview POST /app/review */
 export async function doAppReviewUsingPost(
   body: API.ReviewRequest,
-  options?: { [key: string]: any }
+  options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseBoolean_>("/app/review", {
-    method: "POST",
+  return request<API.BaseResponseBoolean_>('/app/review', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     data: body,
     ...(options || {}),
@@ -124,12 +133,12 @@ export async function doAppReviewUsingPost(
 /** updateApp POST /app/update */
 export async function updateAppUsingPost(
   body: API.AppUpdateRequest,
-  options?: { [key: string]: any }
+  options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseBoolean_>("/app/update", {
-    method: "POST",
+  return request<API.BaseResponseBoolean_>('/app/update', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     data: body,
     ...(options || {}),
