@@ -164,6 +164,8 @@ const columns = [
   {
     title: "选项",
     dataIndex: "choices",
+    ellipsis: true,
+    tooltip: true,
   },
   {
     title: "结果 id",
@@ -176,6 +178,8 @@ const columns = [
   {
     title: "描述",
     dataIndex: "resultDesc",
+    ellipsis: true,
+    tooltip: true,
   },
   {
     title: "图片",
