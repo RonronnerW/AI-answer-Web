@@ -58,6 +58,11 @@ declare namespace API {
     scoringStrategy?: number;
   };
 
+  type appLikesUsingGETParams = {
+    /** id */
+    id: number;
+  };
+
   type AppQueryRequest = {
     appDesc?: string;
     appName?: string;
@@ -136,6 +141,12 @@ declare namespace API {
   type BaseResponseListQuestionContentDTO_ = {
     code?: number;
     data?: QuestionContentDTO[];
+    message?: string;
+  };
+
+  type BaseResponseListUserVO_ = {
+    code?: number;
+    data?: UserVO[];
     message?: string;
   };
 
