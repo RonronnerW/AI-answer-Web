@@ -57,6 +57,7 @@ import { aiGenerateQuestionUsingPost } from "@/api/questionController";
 import message from "@arco-design/web-vue/es/message";
 import { getAppVoByIdUsingGet } from "@/api/appController";
 import { HOST } from "@/constant/app";
+import myAxios from "@/request";
 
 interface Props {
   appId: string;
@@ -149,7 +150,7 @@ const handleSubmitSSE = async () => {
   }
   handleCancel();
   const eventSource = new EventSource(
-    HOST +
+    myAxios.getUri() +
       "/question/ai_generate/sse?" +
       `appId=${props.appId}&questionNumber=${form.questionNumber}&optionNumber=${form.optionNumber}`
   );
